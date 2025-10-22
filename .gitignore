@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Do not ignore .cpp files
+!*.cpp
+
+# Optionally do not ignore .gitignore file itself (important to keep .gitignore tracked)
+!.gitignore
