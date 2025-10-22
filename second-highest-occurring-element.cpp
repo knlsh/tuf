@@ -10,8 +10,10 @@ class Solution {
             int maxFreq = 0;
             int secondMaxFreq = 0;
             
+            // using unordered map to store element and frequency
             unordered_map<int, int> umap;
 
+            // add values to map
             for (int i=0; i<nums.size(); i++) {
                 umap[nums[i]]++;
             }
@@ -20,17 +22,24 @@ class Solution {
                 int ele = it.first;
                 int freq = it.second;
 
+                // check if freq is maxFreq
                 if (freq > maxFreq) {
                     secondMaxFreq = maxFreq;
                     secondMaxEle = maxEle;
                     maxFreq = freq;
                     maxEle = ele;
+                
+                // if both are equal, check which is the min element and replace 
                 } else if (freq == maxFreq) {
                     maxEle = min(ele, maxEle);
                 }
+
+                // check if freq is secondMaxFreq
                 else if (freq > secondMaxFreq) {
                     secondMaxFreq = freq;
                     secondMaxEle = ele;
+
+                // if both are equal, replace
                 } else if (freq == secondMaxFreq) {
                     secondMaxEle = min(ele, secondMaxEle);
                 }
