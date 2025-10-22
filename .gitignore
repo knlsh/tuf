@@ -6,3 +6,6 @@
 
 # Optionally do not ignore .gitignore file itself (important to keep .gitignore tracked)
 !.gitignore
+
+# For some reason vscode adds the runner file in folder
+tempCodeRunnerFile.cpp

@@ -6,7 +6,7 @@ class Solution {
     public:
         int highestOccurringElement (vector<int>& nums)
         {
-            // store max occuring element with frequency in variable
+            // store max occurring element with frequency in variable
             int maxEle = 0;
             int maxFreq = 0;
 
