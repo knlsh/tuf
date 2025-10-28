@@ -2,6 +2,7 @@
 
 using namespace std;
 
+/* 
 class Solution{	
 	public:		
 		bool palindromeCheck(string& s){
@@ -31,10 +32,30 @@ class Solution{
 
             palCheck(s, left+1, right-1);
         }
+}; */
+
+class Solution{	
+	public:		
+		bool palindromeCheck(string& s) {
+			//your code goes here
+            return isPalindrome(s, 0, s.length()-1);
+		}
+
+        bool isPalindrome(string& s, int left, int right) {
+            if (left >= right) {
+                return true;
+            }
+
+            if (s[left] != s[right]) {
+                return false;
+            }
+
+            return isPalindrome(s, left + 1, right - 1);
+        }
 };
 
 int main() {
     Solution sol;
-    string s = "nasjdsjs";
+    string s = "anna";
     cout << sol.palindromeCheck(s);
 }
