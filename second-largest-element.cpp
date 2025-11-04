@@ -20,7 +20,7 @@ public:
                 secondLargest = nums[i];
                 break;
             }
-        }
+        }   
 
         return secondLargest;
     }
