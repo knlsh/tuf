@@ -5,7 +5,19 @@ using namespace std;
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        vector<int> temp;
+        
+        // Optimized approach
+        
+        int j = 0;
+
+        for (int i=0; i<nums.size(); i++) {
+            if (nums[i] != 0) {
+                swap (nums[i], nums[j]);
+                j++;
+            }
+        }
+        
+        /* vector<int> temp;
 
         // move non zero elements to temp array
         for (int i=0; i<nums.size(); i++) {
@@ -23,7 +35,7 @@ public:
         // fill up rest of the positions with 0
         for (int i=tempSize; i<nums.size(); i++) {
             nums[i] = 0;
-        }
+        } */
     }
 };
 
