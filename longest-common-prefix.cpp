@@ -2,29 +2,28 @@
 
 using namespace std;
 
-class Solution{	
-	public:
-		string longestCommonPrefix(vector<string>& str){
-			//your code goes here   
-            int l = str.size();
-            string lcpValue = "";
-            sort(str.begin(), str.end());
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string ans = "";
 
-            string smallest = str[0];
-            string largest = str[l-1];
-            int minVal = min(smallest.length(), largest.length());
+        if (strs.size() == 0) return ans;
 
-            for (int i=0; i<minVal; i++) {
-                if (smallest[i] != largest[i]) {
-                    break;
-                }
-                lcpValue += smallest[i];
+        int n = strs.size();
+        sort(strs.begin(), strs.end());
+        string shortest = strs[0];
+        string longest = strs[n-1];
+        
+        for (int i=0; i<min(shortest.size(), longest.size()); i++) {
+            if (shortest[i] != longest[i]) {
+                return ans;
             }
+            ans += shortest[i];
+        }
 
-            return lcpValue;
-		}
+        return ans;
+    }
 };
-
 int main() {
     Solution sol;
     vector<string> str = {"flow", "flowers", "flowing", "flob"};
