@@ -136,8 +136,108 @@ void explainPQ() {
      }
      cout << endl;
 }
+void explainSet() {
+    // stores unique values -> non duplicated values
+    // stores in ascending order -> ordered by default
+    set<int> s;
+    s.insert(11);
+    s.insert(21);
+    s.insert(12);
+    s.insert(22);
+
+    for (auto itr : s) {
+        cout << itr << " ";
+    }
+    cout << endl;
+
+    // lower_bound: returns an iterator that points to the element that is <= number given
+    auto lb = s.lower_bound(10); 
+    cout << *lb << endl;  
+
+    // upper_bound: returns an iterator that points to the element that is > number given
+    auto ub = s.upper_bound(20);
+    cout << *ub << endl;
+
+    // erase: remove elements from the range
+    auto beginRange = s.begin();
+    beginRange++;
+    auto endRange = s.end();
+    endRange--;
+    s.erase(beginRange, endRange);
+
+    for (auto itr : s) {
+        cout << itr << " ";
+    }
+    cout << endl;
+
+}
+void explainMultiset() {
+    // stores the values in ascending order by default but with duplicates.
+    multiset<int> ml;
+    ml.insert(6);
+    ml.insert(2);
+    ml.insert(3);
+    ml.insert(4);
+    ml.insert(5);
+    ml.insert(5);
+
+    for (auto itr : ml) {
+        cout << itr << " ";
+    }
+    cout << endl;
+    ml.erase(ml.find(2));
+
+    // count the number of specific elements in multiset
+    cout << ml.count(5) << endl;
+
+    for (auto itr : ml) {
+        cout << itr << " ";
+    }
+}
+void explainUnorderedSet() {
+    // cannot apply lower bound and upper bound because the elements are not sorted in set
+    unordered_set<int> st;
+    st.insert(1);
+    st.insert(2);
+    st.insert(3);
+    st.insert(2);
+    st.insert(3);
+    st.insert(2);
+    st.insert(3);
+    st.insert(1);
+
+    auto it = st.find(2); // in average case it gives better TC: 0(1)
+    cout << *it;
+
+}
+void explainMap() {
+    // stores the values in map in ascending order of the key
+    // the value in map is always stored in pairs (key, value)
+    map<int, string> mpp;
+    mpp[1] = "abc";
+    mpp[2] = "pqr";
+    mpp[3] = "glksd";
+    mpp.insert({4, "kunal"});
+
+    for (auto itr: mpp) {
+        cout << itr.first << "->" << itr.second << endl;
+    }
+}
+void explainUnorderedMap() {
+    // stores the key value pair without maintaining an order
+    unordered_map<int, string> mpp;
+    mpp[1] = "abc";
+    mpp[2] = "pqr";
+    mpp[3] = "glksd";
+    mpp.insert({4, "kunal"});
+
+    for (auto itr: mpp) {
+        cout << itr.first << "->" << itr.second << endl;
+    }
+}
+
 
 int main() {
-    explainPQ();
+    explainUnorderedMap();
     return 0;
 }
