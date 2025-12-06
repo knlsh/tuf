@@ -235,9 +235,82 @@ void explainUnorderedMap() {
         cout << itr.first << "->" << itr.second << endl;
     }
 }
+void explainMultiMap() {
+    multimap<int, char> mm;
+    mm.insert({10, 'a'});
+    mm.insert({11, 'a'});
+    mm.insert({10, 'a'});
+    mm.insert({10, 'b'});
+    mm.insert({11, 'b'});
+    mm.insert({12, 'a'});
 
+    for (auto itr : mm) {
+        cout << itr.first << "->" << itr.second << endl;
+    }
+    
+    // print the values with specific key
+    auto it = mm.equal_range(10);
+    for (auto itr = it.first; itr != it.second; itr++) {
+        cout << (*itr).first << "->" << (*itr).second << endl;
+    }
+}
+void explainSort() {
+    int arr[5] = {4, 10, 43, 5, 1};
+    sort (arr, arr+5); // (start ele, end ele)
+    for (int x: arr) {
+        cout << x << " ";
+    }
+}
+void explainAccumulate() {
+    int arr[5] = {1, 2, 3, 4, 5};
+    cout << accumulate(arr, arr+5, 0); // (first ele, last ele, starting sum)
+}
+void explainCount() {
+    int arr[5] = {1, 2, 3, 4, 3};
+    int num = 3;
+    cout << count(arr, arr+5, num); // (first ele, last ele, query)
+}
+void explainFind() {
+    int arr[5] = {1, 2, 3, 4, 3};
+    auto it = find(arr, arr+5, 6); // (first ele, last ele, query)
+    if (it == arr+5) {
+        cout << "not found";
+    } else {
+        cout << *it;
+    }
+}
+void explainNextPermutation() {
+    string str = "abc";
+    do {
+        cout << str << endl;
+    } while (next_permutation(str.begin(), str.end())); // only returns the sorted permutations
+}
+void explainPrevPermutation() {
+    string str = "abc";
+    do {
+        cout << str << endl;
+    } while (prev_permutation(str.begin(), str.end())); // only returns the sorted permutations in descending order
+}
+void explainMaxElement() {
+    int arr[5] = {1, 2, 3, 4, 3};
+    auto it = max_element(arr, arr+5);
+    cout << *it;
+}
+bool internalComparator(pair<int, int> p1, pair<int, int> p2) {
+    if (p1.second > p2.second) return true;
+    if (p1.second < p2.second) return false;
+    if (p1.first < p2.first) return true;
+    return false;
+}
+void explainComparator() {
+    pair<int, int> arr[] = {{1, 6}, {1, 5}, {2, 6}, {2, 9}, {3, 9}};
+    sort(arr, arr+5, internalComparator);
+    for (int i=0; i<5; i++) {
+        cout << arr[i].first << "->" << arr[i].second << endl;
+    }
+}
 
 int main() {
-    explainUnorderedMap();
+    explainComparator();
     return 0;
 }
