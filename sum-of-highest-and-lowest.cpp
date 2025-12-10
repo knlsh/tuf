@@ -23,10 +23,32 @@ class Solution {
 
          return maxFreq + minFreq;
     }
+
+    int bruteforce(vector<int>& nums) {
+        int visited[10000] = {0};
+        int maxFreq = INT_MIN; 
+        int minFreq = INT_MAX;
+        
+        for (int i=0; i<nums.size(); i++) {
+            int freq = 0;
+            if (visited[nums[i]] == 0) {
+                for (int j=i; j<nums.size(); j++) {
+                    visited[nums[i]] = 1;
+                    if (nums[i] == nums[j]) {
+                        freq++;
+                    }
+
+                    maxFreq = max(freq, maxFreq);
+                    minFreq = min(freq, minFreq);
+                }
+            }
+        }
+        return maxFreq + minFreq;
+    }
 };
 
 int main() {
-    vector<int> nums = {1, 1, 2, 2, 2, 3, 3, 3, 3};
+    vector<int> nums = {10, 9, 7, 7, 8, 8, 8};
     Solution sol;
-    cout << sol.sumHighestAndLowestFrequency(nums);
+    cout << sol.bruteforce(nums);
 }

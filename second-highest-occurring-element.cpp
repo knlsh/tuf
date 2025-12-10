@@ -4,6 +4,7 @@ using namespace std;
 
 class Solution {
     public:
+        // optimal
         int secondHighestOccurringElement(vector<int>& nums) {
             int maxEle = -1;
             int secondMaxEle = -1;
@@ -47,6 +48,44 @@ class Solution {
 
             return secondMaxEle;
         }
+        
+        // bruteforce 
+        int func(int arr[], int size) {
+    int visited[1000 + 1] = {0};
+    int maxFreq = 0;
+    int secondMaxFreq = 0;
+    int maxEle = -1;
+    int secondMaxEle = -1;
+    
+    for (int i=0; i<size; i++) {
+        if (visited[arr[i]] == 0) {
+            int count = 0;
+            for (int j=0; j<size; j++) {
+                if (arr[i] == arr[j]) {
+                    visited[arr[i]] = 1;
+                    count++;
+                }
+            }
+
+            if (count > maxFreq) {
+                secondMaxFreq = maxFreq;
+                secondMaxEle = maxEle;
+                maxFreq = count;
+                maxEle = arr[i];
+            } else if (count == maxFreq) {
+                maxEle = min(arr[i], maxEle);
+            } else if (count > secondMaxFreq) {
+                secondMaxFreq = count;
+                secondMaxEle = arr[i];
+            } else if (count == secondMaxFreq) {
+                secondMaxEle = min(secondMaxEle, arr[i]);
+            }
+        }
+    }
+
+    return secondMaxEle;
+
+    }
 };
 
 int main() {
